@@ -187,23 +187,25 @@ class _ParcelRequestScreenState extends State<ParcelRequestScreen> {
                                         height: 30, width: 30),
                                     SizedBox(
                                         width: Dimensions.PADDING_SIZE_SMALL),
-                                    Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text('delivery_fee'.tr,
-                                              style: robotoRegular),
-                                          Text(
-                                            'order_being_processed'.tr,
-                                            //parcelController.distance == -1
-                                            //                                                 ? 'calculating'.tr
-                                            //                                                 : PriceConverter.convertPrice(
-                                            //                                                     _charge)
-                                            style: robotoBold.copyWith(
-                                                color: Theme.of(context)
-                                                    .primaryColor),
-                                          ),
-                                        ]),
+                                    Expanded(
+                                      child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text('delivery_fee'.tr,
+                                                style: robotoRegular),
+                                            Text(
+                                              'order_being_processed'.tr,
+                                              //parcelController.distance == -1
+                                              //                                                 ? 'calculating'.tr
+                                              //                                                 : PriceConverter.convertPrice(
+                                              //                                                     _charge)
+                                              style: robotoBold.copyWith(
+                                                  color: Theme.of(context)
+                                                      .primaryColor),
+                                            ),
+                                          ]),
+                                    ),
                                   ]))
                                 ])),
                                 SizedBox(height: Dimensions.PADDING_SIZE_LARGE),

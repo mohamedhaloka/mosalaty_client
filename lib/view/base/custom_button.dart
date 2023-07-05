@@ -1,6 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:sixam_mart/util/dimensions.dart';
 import 'package:sixam_mart/util/styles.dart';
-import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
   final Function onPressed;
@@ -12,6 +12,7 @@ class CustomButton extends StatelessWidget {
   final double fontSize;
   final double radius;
   final IconData icon;
+  final Color bgColor, fontColor;
   CustomButton(
       {this.onPressed,
       @required this.buttonText,
@@ -19,6 +20,8 @@ class CustomButton extends StatelessWidget {
       this.margin,
       this.width,
       this.height,
+      this.fontColor,
+      this.bgColor,
       this.fontSize,
       this.radius = 5,
       this.icon});
@@ -28,9 +31,10 @@ class CustomButton extends StatelessWidget {
     final ButtonStyle _flatButtonStyle = TextButton.styleFrom(
       backgroundColor: onPressed == null
           ? Theme.of(context).disabledColor
-          : transparent
-              ? Colors.transparent
-              : Theme.of(context).primaryColor,
+          : bgColor ??
+              (transparent
+                  ? Colors.transparent
+                  : Theme.of(context).primaryColor),
       minimumSize: Size(width != null ? width : Dimensions.WEB_MAX_WIDTH,
           height != null ? height : 50),
       padding: EdgeInsets.zero,
@@ -62,9 +66,10 @@ class CustomButton extends StatelessWidget {
                   Text(buttonText ?? '',
                       textAlign: TextAlign.center,
                       style: robotoBold.copyWith(
-                        color: transparent
-                            ? Theme.of(context).primaryColor
-                            : Theme.of(context).cardColor,
+                        color: fontColor ??
+                            (transparent
+                                ? Theme.of(context).primaryColor
+                                : Theme.of(context).cardColor),
                         fontSize: fontSize != null
                             ? fontSize
                             : Dimensions.fontSizeLarge,

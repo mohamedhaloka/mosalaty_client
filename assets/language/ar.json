@@ -495,5 +495,8 @@
   "not_provided": "غير مزود",
   "item_details": "تفاصيل العنصر",
   "enter_sender_name": "أدخل اسم المرسل",
-  "enter_sender_phone_number": "أدخل رقم هاتف المرسل"
+  "enter_sender_phone_number": "أدخل رقم هاتف المرسل",
+  "delete_profile": "إزالة الحساب",
+  "sure_to_delete_your_account": "هل أنت متأكد من حذف حسابك؟",
+  "it_will_remove_all_your_info": "سوف يزيل كل المعلومات الخاصه بك"
 }

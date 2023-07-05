@@ -717,27 +717,51 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                             .hintColor
                                             .withOpacity(0.5)),
                                   ),
-
-                                  Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text('total_amount'.tr,
+                                  if (_order.orderStatus == 'accepted' ||
+                                      _order.orderStatus == 'confirmed' ||
+                                      _order.orderStatus == 'processing' ||
+                                      _order.orderStatus == 'handover' ||
+                                      _order.orderStatus == 'picked_up') ...[
+                                    Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text('total_amount'.tr,
+                                              style: robotoMedium.copyWith(
+                                                fontSize:
+                                                    Dimensions.fontSizeLarge,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              )),
+                                          Text(
+                                            PriceConverter.convertPrice(_total),
                                             style: robotoMedium.copyWith(
-                                              fontSize:
-                                                  Dimensions.fontSizeLarge,
-                                              color: Theme.of(context)
-                                                  .primaryColor,
-                                            )),
-                                        Text(
-                                          PriceConverter.convertPrice(_total),
-                                          style: robotoMedium.copyWith(
-                                              fontSize:
-                                                  Dimensions.fontSizeLarge,
-                                              color: Theme.of(context)
-                                                  .primaryColor),
-                                        ),
-                                      ]),
+                                                fontSize:
+                                                    Dimensions.fontSizeLarge,
+                                                color: Theme.of(context)
+                                                    .primaryColor),
+                                          ),
+                                        ]),
+                                  ] else if (_order.orderStatus ==
+                                      'pending') ...[
+                                    Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Flexible(
+                                            child: Text('delivery_fee'.tr,
+                                                style: robotoRegular),
+                                          ),
+                                          Flexible(
+                                            child: Text(
+                                              'order_being_processed'.tr,
+                                              style: robotoBold.copyWith(
+                                                  color: Theme.of(context)
+                                                      .primaryColor),
+                                            ),
+                                          ),
+                                        ])
+                                  ],
 
                                   SizedBox(
                                       height:

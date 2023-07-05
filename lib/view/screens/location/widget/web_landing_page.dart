@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart' as intl;
 import 'package:sixam_mart/controller/location_controller.dart';
 import 'package:sixam_mart/controller/splash_controller.dart';
 import 'package:sixam_mart/data/model/response/address_model.dart';
 import 'package:sixam_mart/data/model/response/config_model.dart';
-import 'package:sixam_mart/data/model/response/prediction_model.dart';
 import 'package:sixam_mart/data/model/response/zone_response_model.dart';
 import 'package:sixam_mart/helper/responsive_helper.dart';
 import 'package:sixam_mart/helper/route_helper.dart';
@@ -25,7 +25,8 @@ import 'package:sixam_mart/view/screens/location/widget/landing_card.dart';
 import 'package:sixam_mart/view/screens/location/widget/registration_card.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:url_launcher/url_launcher_string.dart';
-import 'package:intl/intl.dart' as intl;
+
+import '../../../../data/model/response/prediction_model.dart';
 
 class WebLandingPage extends StatefulWidget {
   final bool fromSignUp;

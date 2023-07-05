@@ -1,12 +1,13 @@
-import 'package:sixam_mart/controller/location_controller.dart';
-import 'package:sixam_mart/controller/parcel_controller.dart';
-import 'package:sixam_mart/data/model/response/prediction_model.dart';
-import 'package:sixam_mart/helper/responsive_helper.dart';
-import 'package:sixam_mart/util/dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import '../../../../controller/location_controller.dart';
+import '../../../../controller/parcel_controller.dart';
+import '../../../../data/model/response/prediction_model.dart';
+import '../../../../helper/responsive_helper.dart';
+import '../../../../util/dimensions.dart';
 
 class LocationSearchDialog extends StatelessWidget {
   final GoogleMapController mapController;
@@ -16,7 +17,6 @@ class LocationSearchDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TextEditingController _controller = TextEditingController();
-
     return Container(
       margin: EdgeInsets.only(top: ResponsiveHelper.isWeb() ? 80 : 0),
       padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),

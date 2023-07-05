@@ -477,7 +477,6 @@
   "pick_from_map": "Pick From Map",
   "register": "Register",
   "register_as_delivery_man_and_earn_money": "Register as delivery man and earn money",
-
   "version_1.4": "Version 1.4",
   "street_number": "Street Number",
   "house": "House",
@@ -496,4 +495,8 @@
   "item_details": "Item Details",
   "enter_sender_name": "Enter sender name",
   "enter_sender_phone_number": "Enter sender phone number",
+  "delete_profile": "Delete Account",
+  "sure_to_delete_your_account": "Are you sure to delete your account?",
+  "it_will_remove_all_your_info": "It will remove all of your information"
+
 }

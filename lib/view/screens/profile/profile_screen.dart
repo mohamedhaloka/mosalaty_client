@@ -1,10 +1,11 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sixam_mart/controller/auth_controller.dart';
 import 'package:sixam_mart/controller/splash_controller.dart';
 import 'package:sixam_mart/controller/theme_controller.dart';
 import 'package:sixam_mart/controller/user_controller.dart';
 import 'package:sixam_mart/helper/responsive_helper.dart';
 import 'package:sixam_mart/helper/route_helper.dart';
-import 'package:sixam_mart/util/app_constants.dart';
 import 'package:sixam_mart/util/dimensions.dart';
 import 'package:sixam_mart/util/styles.dart';
 import 'package:sixam_mart/view/base/custom_image.dart';
@@ -14,8 +15,8 @@ import 'package:sixam_mart/view/base/web_menu_bar.dart';
 import 'package:sixam_mart/view/screens/profile/widget/profile_bg_widget.dart';
 import 'package:sixam_mart/view/screens/profile/widget/profile_button.dart';
 import 'package:sixam_mart/view/screens/profile/widget/profile_card.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
+import '../../base/custom_button.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -29,7 +30,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void initState() {
     super.initState();
 
-    if (_isLoggedIn && Get.find<UserController>().userInfoModel == null) {
+    if (_isLoggedIn) {
       Get.find<UserController>().getUserInfo();
     }
   }
@@ -148,6 +149,61 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 Get.toNamed(
                                     RouteHelper.getUpdateProfileRoute());
                               }),
+                          SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
+
+                          ProfileButton(
+                            icon: Icons.delete,
+                            title: 'delete_profile'.tr,
+                            onTap: () {
+                              Get.dialog(AlertDialog(
+                                scrollable: true,
+                                title: Icon(
+                                  Icons.info,
+                                  color: Get.theme.primaryColor,
+                                  size: 35,
+                                ),
+                                content: Column(
+                                  children: [
+                                    Text(
+                                      'sure_to_delete_your_account'.tr,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        color: Colors.red,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 12),
+                                    Text(
+                                      'it_will_remove_all_your_info'.tr,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ],
+                                ),
+                                actions: [
+                                  Row(children: [
+                                    Expanded(
+                                      child: CustomButton(
+                                        buttonText: 'yes'.tr,
+                                        fontColor: Colors.black,
+                                        bgColor: Colors.grey[300],
+                                        onPressed: () {},
+                                      ),
+                                    ),
+                                    const SizedBox(width: 8),
+                                    Expanded(
+                                      child: CustomButton(
+                                        buttonText: 'no'.tr,
+                                        onPressed: () {
+                                          Get.back();
+                                        },
+                                      ),
+                                    ),
+                                  ])
+                                ],
+                              ));
+                            },
+                          ),
                           SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
 
                           // Row(mainAxisAlignment: MainAxisAlignment.center, children: [

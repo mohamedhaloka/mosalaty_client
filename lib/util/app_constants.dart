@@ -21,6 +21,7 @@ class AppConstants {
   static const String MESSAGE_URI = '/api/v1/customer/message/get';
   static const String SEND_MESSAGE_URI = '/api/v1/customer/message/send';
   static const String FORGET_PASSWORD_URI = '/api/v1/auth/forgot-password';
+  static const String DELETE_CUSTOMER_ACC = '/api/v1/customer/delete-account';
   static const String VERIFY_TOKEN_URI = '/api/v1/auth/verify-token';
   static const String RESET_PASSWORD_URI = '/api/v1/auth/reset-password';
   static const String VERIFY_PHONE_URI = '/api/v1/auth/verify-phone';

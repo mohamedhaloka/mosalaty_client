@@ -1,15 +1,15 @@
 import 'dart:async';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
+import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sixam_mart/controller/location_controller.dart';
 import 'package:sixam_mart/controller/splash_controller.dart';
 import 'package:sixam_mart/data/api/api_client.dart';
 import 'package:sixam_mart/data/model/body/signup_body.dart';
 import 'package:sixam_mart/data/model/body/social_log_in_body.dart';
 import 'package:sixam_mart/util/app_constants.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/foundation.dart';
-import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthRepo {
   final ApiClient apiClient;
@@ -81,6 +81,10 @@ class AuthRepo {
   Future<Response> forgetPassword(String phone) async {
     return await apiClient
         .postData(AppConstants.FORGET_PASSWORD_URI, {"phone": phone});
+  }
+
+  Future<Response> deleteAccount() async {
+    return await apiClient.deleteData(AppConstants.DELETE_CUSTOMER_ACC);
   }
 
   Future<Response> verifyToken(String phone, String token) async {

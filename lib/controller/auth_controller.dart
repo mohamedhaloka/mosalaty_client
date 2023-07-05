@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sixam_mart/controller/splash_controller.dart';
+import 'package:sixam_mart/controller/wishlist_controller.dart';
 import 'package:sixam_mart/data/api/api_checker.dart';
 import 'package:sixam_mart/data/model/body/signup_body.dart';
 import 'package:sixam_mart/data/model/body/social_log_in_body.dart';
@@ -13,6 +14,8 @@ import 'package:sixam_mart/data/repository/auth_repo.dart';
 import 'package:sixam_mart/helper/route_helper.dart';
 import 'package:sixam_mart/view/base/custom_snackbar.dart';
 import 'package:the_apple_sign_in/the_apple_sign_in.dart';
+
+import 'cart_controller.dart';
 
 class AuthController extends GetxController implements GetxService {
   final AuthRepo authRepo;
@@ -77,6 +80,7 @@ class AuthController extends GetxController implements GetxService {
     Response response =
         await authRepo.loginWithSocialMedia(socialLogInBody.email);
     if (response.statusCode == 200) {
+      print(response.body);
       String _token = response.body['token'];
       if (_token != null && _token.isNotEmpty) {
         if (Get.find<SplashController>().configModel.customerVerification &&
@@ -103,6 +107,7 @@ class AuthController extends GetxController implements GetxService {
     update();
     Response response = await authRepo.registerWithSocialMedia(socialLogInBody);
     if (response.statusCode == 200) {
+      print(response.body);
       String _token = response.body['token'];
       if (Get.find<SplashController>().configModel.customerVerification &&
           response.body['is_phone_verified'] == 0) {
@@ -191,11 +196,12 @@ class AuthController extends GetxController implements GetxService {
       print(userCredential.user.displayName);
 
       final socialLoginBody = SocialLogInBody(
-        token: googleAuth?.accessToken,
-        email: userCredential.user.email,
-        medium: 'google',
-      );
-      await registerWithSocialMedia(socialLoginBody);
+          token: googleAuth?.accessToken,
+          email: userCredential.user.email,
+          medium: 'google',
+          phone: '01094519221');
+      // Get.toNamed(RouteHelper.getForgotPassRoute(true, socialLoginBody));
+      await loginWithSocialMedia(socialLoginBody);
     } catch (e) {
       showCustomSnackBar(e.toString());
     }
@@ -373,5 +379,16 @@ class AuthController extends GetxController implements GetxService {
     authRepo.setNotificationActive(isActive);
     update();
     return _notification;
+  }
+
+  Future<void> deleteAccount() async {
+    Response response = await authRepo.deleteAccount();
+
+    if (response.statusCode == 200) {
+      clearSharedData();
+      Get.find<CartController>().clearCartList();
+      Get.find<WishListController>().removeWishes();
+      Get.offAllNamed(RouteHelper.getSignInRoute(RouteHelper.splash));
+    } else {}
   }
 }

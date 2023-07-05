@@ -1,12 +1,12 @@
 import 'dart:typed_data';
 
-import 'package:sixam_mart/data/api/api_checker.dart';
-import 'package:sixam_mart/data/model/response/response_model.dart';
-import 'package:sixam_mart/data/repository/user_repo.dart';
-import 'package:sixam_mart/data/model/response/userinfo_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:sixam_mart/data/api/api_checker.dart';
+import 'package:sixam_mart/data/model/response/response_model.dart';
+import 'package:sixam_mart/data/model/response/userinfo_model.dart';
+import 'package:sixam_mart/data/repository/user_repo.dart';
 import 'package:sixam_mart/helper/network_info.dart';
 
 class UserController extends GetxController implements GetxService {
@@ -26,6 +26,7 @@ class UserController extends GetxController implements GetxService {
   Future<ResponseModel> getUserInfo() async {
     _pickedFile = null;
     _rawFile = null;
+    _userInfoModel = null;
     ResponseModel _responseModel;
     Response response = await userRepo.getUserInfo();
     if (response.statusCode == 200) {

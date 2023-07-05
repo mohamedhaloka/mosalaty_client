@@ -1,34 +1,225 @@
 {
   "project_info": {
-    "project_number": "1000163153346",
-    "project_id": "ammart-8885e",
-    "storage_bucket": "ammart-8885e.appspot.com"
+    "project_number": "1011436910772",
+    "project_id": "elmwslaty-final",
+    "storage_bucket": "elmwslaty-final.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1000163153346:android:7d49ab307cc6e18406b25b",
+        "mobilesdk_app_id": "1:1011436910772:android:273da7a6eebfe5ee2f7fe1",
         "android_client_info": {
-          "package_name": "com.techunique.elmosalaty.client"
+          "package_name": "com.mwslaty.shipping"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1000163153346-48ckm2uf7h70hmgn74kg1gq02sval158.apps.googleusercontent.com",
+          "client_id": "1011436910772-ptbmdajc4jg8omp4tp6hoogi5d6v307s.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCic6Mw3RRPFcimXhwGidwhCN0tXY7HFFc"
+          "current_key": "AIzaSyD_aA34SjrQGzVvcAWHqtT6ArD63m_7aKE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1000163153346-48ckm2uf7h70hmgn74kg1gq02sval158.apps.googleusercontent.com",
+              "client_id": "1011436910772-aip89qeetnlr784b2rgi0bi1m6jd7iou.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1011436910772-0q8jhi80g0ght6uj06583gkm43fpsh78.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.techunique.store"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1011436910772:android:473b36684f7deb802f7fe1",
+        "android_client_info": {
+          "package_name": "com.techunique.elmosalaty.client"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1011436910772-ptbmdajc4jg8omp4tp6hoogi5d6v307s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_aA34SjrQGzVvcAWHqtT6ArD63m_7aKE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1011436910772-aip89qeetnlr784b2rgi0bi1m6jd7iou.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1011436910772-0q8jhi80g0ght6uj06583gkm43fpsh78.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.techunique.store"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1011436910772:android:f5a2879fb0bce9b72f7fe1",
+        "android_client_info": {
+          "package_name": "com.techunique.moslatydeliver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1011436910772-82sucggrf9sk6su7116boscmejge19hn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.techunique.moslatydeliver",
+            "certificate_hash": "3decb42d3a9305ba2ba7a7f4de67e2cd17c47a47"
+          }
+        },
+        {
+          "client_id": "1011436910772-ptbmdajc4jg8omp4tp6hoogi5d6v307s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_aA34SjrQGzVvcAWHqtT6ArD63m_7aKE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1011436910772-aip89qeetnlr784b2rgi0bi1m6jd7iou.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1011436910772-0q8jhi80g0ght6uj06583gkm43fpsh78.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.techunique.store"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1011436910772:android:f6dd6be0512e2ebf2f7fe1",
+        "android_client_info": {
+          "package_name": "com.techunique.store"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1011436910772-ptbmdajc4jg8omp4tp6hoogi5d6v307s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_aA34SjrQGzVvcAWHqtT6ArD63m_7aKE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1011436910772-aip89qeetnlr784b2rgi0bi1m6jd7iou.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1011436910772-0q8jhi80g0ght6uj06583gkm43fpsh78.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.techunique.store"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1011436910772:android:b99f87c127bcd4b02f7fe1",
+        "android_client_info": {
+          "package_name": "com.techunique.zedan.moslaty"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1011436910772-1b79p989s64hjb72v64qu88bcueuloi4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.techunique.zedan.moslaty",
+            "certificate_hash": "0b09ee4130e4009771f91e9d2256be94dba7c45d"
+          }
+        },
+        {
+          "client_id": "1011436910772-cqv0pecnhba0g7ddhqtnggscbhmeii5b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.techunique.zedan.moslaty",
+            "certificate_hash": "a793cf8f50b5aa534ec7f80399bb61e234704113"
+          }
+        },
+        {
+          "client_id": "1011436910772-d8k2sqse01fbp0bf2jvfgqd8hjd50snu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.techunique.zedan.moslaty",
+            "certificate_hash": "961e06cdf1f523efa482ffcf3024bebb3edc273d"
+          }
+        },
+        {
+          "client_id": "1011436910772-ln566lod9nbn2e0ds3f54k103p68klfd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.techunique.zedan.moslaty",
+            "certificate_hash": "36c26e4661240cfb92ab10850baf24cc29d84e8e"
+          }
+        },
+        {
+          "client_id": "1011436910772-ptbmdajc4jg8omp4tp6hoogi5d6v307s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_aA34SjrQGzVvcAWHqtT6ArD63m_7aKE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1011436910772-aip89qeetnlr784b2rgi0bi1m6jd7iou.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1011436910772-0q8jhi80g0ght6uj06583gkm43fpsh78.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.techunique.store"
+              }
             }
           ]
         }
