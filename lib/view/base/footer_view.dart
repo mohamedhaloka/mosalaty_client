@@ -394,9 +394,11 @@ class _FooterViewState extends State<FooterView> {
                                 const SizedBox(
                                     height: Dimensions.PADDING_SIZE_SMALL),
                                 FooterButton(
-                                    title: 'privacy_policy'.tr,
-                                    route: RouteHelper.getHtmlRoute(
-                                        'privacy-policy')),
+                                  title: 'privacy_policy'.tr,
+                                  route: 'http://elmwslaty.ml/ar/privacy',
+                                  // route: RouteHelper.getHtmlRoute(
+                                  //     'privacy-policy'),
+                                ),
                                 const SizedBox(
                                     height: Dimensions.PADDING_SIZE_SMALL),
                                 FooterButton(

@@ -497,6 +497,10 @@
   "enter_sender_phone_number": "Enter sender phone number",
   "delete_profile": "Delete Account",
   "sure_to_delete_your_account": "Are you sure to delete your account?",
-  "it_will_remove_all_your_info": "It will remove all of your information"
+  "it_will_remove_all_your_info": "It will remove all of your information",
+  "ok": "Ok",
+  "back": "Back",
+  "accept_privacy_policy": "Accept privacy policy",
+  "use_of_images_hint":"Please be aware that any images submitted to our platform may be stored on our servers for future use. However, we do not share these images with third parties; they are only used for internal purposes, such as improving our services and user experience."
 
 }

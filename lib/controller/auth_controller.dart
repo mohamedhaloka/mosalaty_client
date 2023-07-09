@@ -384,6 +384,7 @@ class AuthController extends GetxController implements GetxService {
   Future<void> deleteAccount() async {
     Response response = await authRepo.deleteAccount();
 
+    print('delete response ${response.body}');
     if (response.statusCode == 200) {
       clearSharedData();
       Get.find<CartController>().clearCartList();

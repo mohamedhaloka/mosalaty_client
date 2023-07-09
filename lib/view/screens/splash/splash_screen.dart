@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:connectivity/connectivity.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sixam_mart/controller/auth_controller.dart';
 import 'package:sixam_mart/controller/cart_controller.dart';
 import 'package:sixam_mart/controller/location_controller.dart';
@@ -10,8 +12,6 @@ import 'package:sixam_mart/helper/route_helper.dart';
 import 'package:sixam_mart/util/app_constants.dart';
 import 'package:sixam_mart/util/images.dart';
 import 'package:sixam_mart/view/base/no_internet_screen.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class SplashScreen extends StatefulWidget {
   final String orderID;
@@ -103,7 +103,13 @@ class _SplashScreenState extends State<SplashScreen> {
                     Get.offNamed(RouteHelper.getOnBoardingRoute());
                   }
                 } else {
-                  Get.offNamed(RouteHelper.getSignInRoute(RouteHelper.splash));
+                  if (!Get.find<SplashController>().showPrivacyPolicy()) {
+                    Get.offNamed(
+                        RouteHelper.getHtmlRoute('privacy-policy', true));
+                  } else {
+                    Get.offNamed(
+                        RouteHelper.getSignInRoute(RouteHelper.splash));
+                  }
                 }
               }
             }

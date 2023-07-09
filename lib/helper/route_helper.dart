@@ -1,12 +1,14 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sixam_mart/controller/location_controller.dart';
 import 'package:sixam_mart/controller/splash_controller.dart';
 import 'package:sixam_mart/data/model/body/social_log_in_body.dart';
 import 'package:sixam_mart/data/model/response/address_model.dart';
 import 'package:sixam_mart/data/model/response/basic_campaign_model.dart';
-import 'package:sixam_mart/data/model/response/order_model.dart';
 import 'package:sixam_mart/data/model/response/item_model.dart';
+import 'package:sixam_mart/data/model/response/order_model.dart';
 import 'package:sixam_mart/data/model/response/parcel_category_model.dart';
 import 'package:sixam_mart/data/model/response/store_model.dart';
 import 'package:sixam_mart/util/app_constants.dart';
@@ -25,14 +27,14 @@ import 'package:sixam_mart/view/screens/checkout/order_successful_screen.dart';
 import 'package:sixam_mart/view/screens/checkout/payment_screen.dart';
 import 'package:sixam_mart/view/screens/coupon/coupon_screen.dart';
 import 'package:sixam_mart/view/screens/dashboard/dashboard_screen.dart';
-import 'package:sixam_mart/view/screens/item/item_campaign_screen.dart';
-import 'package:sixam_mart/view/screens/item/item_details_screen.dart';
-import 'package:sixam_mart/view/screens/item/popular_item_screen.dart';
 import 'package:sixam_mart/view/screens/forget/forget_pass_screen.dart';
 import 'package:sixam_mart/view/screens/forget/new_pass_screen.dart';
 import 'package:sixam_mart/view/screens/forget/verification_screen.dart';
 import 'package:sixam_mart/view/screens/html/html_viewer_screen.dart';
 import 'package:sixam_mart/view/screens/interest/interest_screen.dart';
+import 'package:sixam_mart/view/screens/item/item_campaign_screen.dart';
+import 'package:sixam_mart/view/screens/item/item_details_screen.dart';
+import 'package:sixam_mart/view/screens/item/popular_item_screen.dart';
 import 'package:sixam_mart/view/screens/language/language_screen.dart';
 import 'package:sixam_mart/view/screens/location/access_location_screen.dart';
 import 'package:sixam_mart/view/screens/location/map_screen.dart';
@@ -47,17 +49,15 @@ import 'package:sixam_mart/view/screens/parcel/parcel_location_screen.dart';
 import 'package:sixam_mart/view/screens/parcel/parcel_request_screen.dart';
 import 'package:sixam_mart/view/screens/profile/profile_screen.dart';
 import 'package:sixam_mart/view/screens/profile/update_profile_screen.dart';
-import 'package:sixam_mart/view/screens/store/all_store_screen.dart';
-import 'package:sixam_mart/view/screens/store/campaign_screen.dart';
-import 'package:sixam_mart/view/screens/store/store_item_search_screen.dart';
-import 'package:sixam_mart/view/screens/store/store_screen.dart';
-import 'package:sixam_mart/view/screens/store/review_screen.dart';
 import 'package:sixam_mart/view/screens/search/search_screen.dart';
 import 'package:sixam_mart/view/screens/splash/splash_screen.dart';
+import 'package:sixam_mart/view/screens/store/all_store_screen.dart';
+import 'package:sixam_mart/view/screens/store/campaign_screen.dart';
+import 'package:sixam_mart/view/screens/store/review_screen.dart';
+import 'package:sixam_mart/view/screens/store/store_item_search_screen.dart';
+import 'package:sixam_mart/view/screens/store/store_screen.dart';
 import 'package:sixam_mart/view/screens/support/support_screen.dart';
 import 'package:sixam_mart/view/screens/update/update_screen.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class RouteHelper {
   static const String initial = '/';
@@ -171,7 +171,8 @@ class RouteHelper {
     return '$basicCampaign?data=$_data';
   }
 
-  static String getHtmlRoute(String page) => '$html?page=$page';
+  static String getHtmlRoute(String page, [bool showCheck = false]) =>
+      '$html?page=$page&showCheck=$showCheck';
   static String getCategoryRoute() => '$categories';
   static String getCategoryItemRoute(int id, String name) {
     List<int> _encoded = utf8.encode(name);
@@ -399,12 +400,12 @@ class RouteHelper {
     GetPage(
         name: html,
         page: () => HtmlViewerScreen(
-              htmlType: Get.parameters['page'] == 'terms-and-condition'
-                  ? HtmlType.TERMS_AND_CONDITION
-                  : Get.parameters['page'] == 'privacy-policy'
-                      ? HtmlType.PRIVACY_POLICY
-                      : HtmlType.ABOUT_US,
-            )),
+            htmlType: Get.parameters['page'] == 'terms-and-condition'
+                ? HtmlType.TERMS_AND_CONDITION
+                : Get.parameters['page'] == 'privacy-policy'
+                    ? HtmlType.PRIVACY_POLICY
+                    : HtmlType.ABOUT_US,
+            showChecker: Get.parameters['showCheck'] == 'true' ? true : false)),
     GetPage(name: categories, page: () => getRoute(CategoryScreen())),
     GetPage(
         name: categoryItem,

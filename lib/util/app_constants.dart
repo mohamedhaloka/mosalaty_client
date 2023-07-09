@@ -100,6 +100,7 @@ class AppConstants {
   static const String NOTIFICATION = '6ammart_notification';
   static const String SEARCH_HISTORY = '6ammart_search_history';
   static const String INTRO = '6ammart_intro';
+  static const String PRIVACY_POLICY = '6ammart_intro';
   static const String NOTIFICATION_COUNT = '6ammart_notification_count';
 
   static const String TOPIC = 'all_zone_customer';

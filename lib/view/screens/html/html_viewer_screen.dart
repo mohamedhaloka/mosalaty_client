@@ -1,21 +1,25 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+import 'package:get/get.dart';
 import 'package:sixam_mart/controller/splash_controller.dart';
 import 'package:sixam_mart/helper/responsive_helper.dart';
 import 'package:sixam_mart/util/dimensions.dart';
 import 'package:sixam_mart/util/html_type.dart';
 import 'package:sixam_mart/util/styles.dart';
 import 'package:sixam_mart/view/base/custom_app_bar.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:sixam_mart/view/base/footer_view.dart';
 import 'package:sixam_mart/view/base/menu_drawer.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:url_launcher/url_launcher_string.dart';
 
+import '../../../helper/route_helper.dart';
+import '../../base/custom_button.dart';
+
 class HtmlViewerScreen extends StatefulWidget {
   final HtmlType htmlType;
-  HtmlViewerScreen({@required this.htmlType});
+  final bool showChecker;
+  HtmlViewerScreen({@required this.htmlType, @required this.showChecker});
 
   @override
   State<HtmlViewerScreen> createState() => _HtmlViewerScreenState();
@@ -29,6 +33,8 @@ class _HtmlViewerScreenState extends State<HtmlViewerScreen> {
     Get.find<SplashController>().getHtmlText(widget.htmlType);
   }
 
+  bool value = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,66 +47,106 @@ class _HtmlViewerScreenState extends State<HtmlViewerScreen> {
                       ? 'privacy_policy'.tr
                       : 'no_data_found'.tr),
       endDrawer: MenuDrawer(),
-      body: GetBuilder<SplashController>(builder: (splashController) {
-        return Center(
-          child: splashController.htmlText != null
-              ? SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
-                  child: FooterView(
-                      child: Ink(
-                    width: Dimensions.WEB_MAX_WIDTH,
-                    color: Theme.of(context).cardColor,
-                    padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
-                    child: Column(children: [
-                      ResponsiveHelper.isDesktop(context)
-                          ? Container(
-                              height: 50,
-                              alignment: Alignment.center,
-                              color: Theme.of(context).cardColor,
-                              width: Dimensions.WEB_MAX_WIDTH,
-                              child: SelectableText(
-                                widget.htmlType == HtmlType.TERMS_AND_CONDITION
-                                    ? 'terms_conditions'.tr
-                                    : widget.htmlType == HtmlType.ABOUT_US
-                                        ? 'about_us'.tr
-                                        : widget.htmlType ==
-                                                HtmlType.PRIVACY_POLICY
-                                            ? 'privacy_policy'.tr
-                                            : 'no_data_found'.tr,
-                                style: robotoBold.copyWith(
-                                    fontSize: Dimensions.fontSizeLarge,
-                                    color: Colors.black),
-                              ),
-                            )
-                          : SizedBox(),
-                      (splashController.htmlText.contains('<ol>') ||
-                              splashController.htmlText.contains('<ul>'))
-                          ? HtmlWidget(
-                              splashController.htmlText ?? '',
-                              key: Key(widget.htmlType.toString()),
-                              isSelectable: true,
-                              onTapUrl: (String url) {
-                                return launchUrlString(url);
-                              },
-                            )
-                          : SelectableHtml(
-                              data: splashController.htmlText,
-                              shrinkWrap: true,
-                              onLinkTap: (String url, RenderContext context,
-                                  Map<String, String> attributes, element) {
-                                if (url.startsWith('www.')) {
-                                  url = 'https://' + url;
-                                }
-                                print('Redirect to url: $url');
-                                html.window.open(url, "_blank");
-                              },
-                            ),
-                    ]),
-                  )),
-                )
-              : CircularProgressIndicator(),
-        );
-      }),
+      body: Column(
+        children: [
+          Expanded(
+            child: GetBuilder<SplashController>(builder: (splashController) {
+              return Center(
+                child: splashController.htmlText != null
+                    ? SingleChildScrollView(
+                        physics: BouncingScrollPhysics(),
+                        child: FooterView(
+                            child: Ink(
+                          width: Dimensions.WEB_MAX_WIDTH,
+                          color: Theme.of(context).cardColor,
+                          padding:
+                              EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
+                          child: Column(children: [
+                            ResponsiveHelper.isDesktop(context)
+                                ? Container(
+                                    height: 50,
+                                    alignment: Alignment.center,
+                                    color: Theme.of(context).cardColor,
+                                    width: Dimensions.WEB_MAX_WIDTH,
+                                    child: SelectableText(
+                                      widget.htmlType ==
+                                              HtmlType.TERMS_AND_CONDITION
+                                          ? 'terms_conditions'.tr
+                                          : widget.htmlType == HtmlType.ABOUT_US
+                                              ? 'about_us'.tr
+                                              : widget.htmlType ==
+                                                      HtmlType.PRIVACY_POLICY
+                                                  ? 'privacy_policy'.tr
+                                                  : 'no_data_found'.tr,
+                                      style: robotoBold.copyWith(
+                                          fontSize: Dimensions.fontSizeLarge,
+                                          color: Colors.black),
+                                    ),
+                                  )
+                                : SizedBox(),
+                            (splashController.htmlText.contains('<ol>') ||
+                                    splashController.htmlText.contains('<ul>'))
+                                ? HtmlWidget(
+                                    splashController.htmlText ?? '',
+                                    key: Key(widget.htmlType.toString()),
+                                    isSelectable: true,
+                                    onTapUrl: (String url) {
+                                      return launchUrlString(url);
+                                    },
+                                  )
+                                : SelectableHtml(
+                                    data: splashController.htmlText,
+                                    shrinkWrap: true,
+                                    onLinkTap: (String url,
+                                        RenderContext context,
+                                        Map<String, String> attributes,
+                                        element) {
+                                      if (url.startsWith('www.')) {
+                                        url = 'https://' + url;
+                                      }
+                                      print('Redirect to url: $url');
+                                      html.window.open(url, "_blank");
+                                    },
+                                  ),
+                          ]),
+                        )),
+                      )
+                    : CircularProgressIndicator(),
+              );
+            }),
+          ),
+          if (widget.showChecker) ...[
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Checkbox(
+                        value: value,
+                        onChanged: (v) {
+                          value = v;
+                          setState(() {});
+                        },
+                      ),
+                      Text('accept_privacy_policy'.tr),
+                    ],
+                  ),
+                  CustomButton(
+                    buttonText: 'next'.tr,
+                    onPressed: () {
+                      if (!value) return;
+                      Get.find<SplashController>().showPrivacySuccess();
+                      Get.offNamed(
+                          RouteHelper.getSignInRoute(RouteHelper.splash));
+                    },
+                  ),
+                ],
+              ),
+            )
+          ]
+        ],
+      ),
     );
   }
 }

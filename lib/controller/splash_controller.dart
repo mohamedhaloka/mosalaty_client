@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sixam_mart/controller/auth_controller.dart';
 import 'package:sixam_mart/controller/banner_controller.dart';
 import 'package:sixam_mart/controller/cart_controller.dart';
@@ -8,8 +10,6 @@ import 'package:sixam_mart/data/api/api_client.dart';
 import 'package:sixam_mart/data/model/response/config_model.dart';
 import 'package:sixam_mart/data/model/response/module_model.dart';
 import 'package:sixam_mart/data/repository/splash_repo.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:sixam_mart/util/html_type.dart';
 import 'package:sixam_mart/util/images.dart';
 import 'package:sixam_mart/view/base/confirmation_dialog.dart';
@@ -77,6 +77,14 @@ class SplashController extends GetxController implements GetxService {
 
   bool showIntro() {
     return splashRepo.showIntro();
+  }
+
+  bool showPrivacyPolicy() {
+    return splashRepo.showPrivacyPolicy();
+  }
+
+  void showPrivacySuccess() {
+    splashRepo.showPrivacySuccess();
   }
 
   void disableIntro() {

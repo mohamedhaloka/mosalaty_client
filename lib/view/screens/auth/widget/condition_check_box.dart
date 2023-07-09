@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sixam_mart/controller/auth_controller.dart';
 import 'package:sixam_mart/helper/route_helper.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ConditionCheckBox extends StatelessWidget {
   final AuthController authController;
@@ -49,7 +50,8 @@ class ConditionCheckBox extends StatelessWidget {
                   text: 'privacy_policy'.tr,
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
-                      Get.toNamed(RouteHelper.getHtmlRoute('privacy-policy'));
+                      launchUrl(Uri.parse('http://elmwslaty.ml/ar/privacy'));
+                      // Get.toNamed(RouteHelper.getHtmlRoute('privacy-policy'));
                     },
                   style: Theme.of(context).textTheme.bodyMedium.copyWith(
                         fontWeight: FontWeight.bold,

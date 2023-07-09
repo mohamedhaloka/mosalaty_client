@@ -1,15 +1,13 @@
-import 'package:sixam_mart/controller/auth_controller.dart';
-import 'package:sixam_mart/controller/splash_controller.dart';
-import 'package:sixam_mart/data/model/response/menu_model.dart';
-import 'package:sixam_mart/helper/responsive_helper.dart';
-import 'package:sixam_mart/helper/route_helper.dart';
-import 'package:sixam_mart/util/app_constants.dart';
-import 'package:sixam_mart/util/dimensions.dart';
-import 'package:sixam_mart/util/images.dart';
-import 'package:sixam_mart/view/screens/menu/widget/menu_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
+import 'package:sixam_mart/controller/auth_controller.dart';
+import 'package:sixam_mart/data/model/response/menu_model.dart';
+import 'package:sixam_mart/helper/responsive_helper.dart';
+import 'package:sixam_mart/helper/route_helper.dart';
+import 'package:sixam_mart/util/dimensions.dart';
+import 'package:sixam_mart/util/images.dart';
+import 'package:sixam_mart/view/screens/menu/widget/menu_button.dart';
 
 class MenuScreen extends StatefulWidget {
   @override
@@ -48,9 +46,10 @@ class _MenuScreenState extends State<MenuScreen> {
           title: 'help_support'.tr,
           route: RouteHelper.getSupportRoute()),
       MenuModel(
-          icon: Images.policy,
-          title: 'privacy_policy'.tr,
-          route: RouteHelper.getHtmlRoute('privacy-policy')),
+        icon: Images.policy, title: 'privacy_policy'.tr,
+        route: 'http://elmwslaty.ml/ar/privacy',
+        // route: RouteHelper.getHtmlRoute('privacy-policy'),
+      ),
       MenuModel(
           icon: Images.about_us,
           title: 'about_us'.tr,

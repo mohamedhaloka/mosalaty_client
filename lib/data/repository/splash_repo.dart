@@ -1,12 +1,12 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sixam_mart/data/api/api_client.dart';
 import 'package:sixam_mart/data/model/response/address_model.dart';
 import 'package:sixam_mart/data/model/response/module_model.dart';
 import 'package:sixam_mart/util/app_constants.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sixam_mart/util/html_type.dart';
 
 class SplashRepo {
@@ -59,8 +59,16 @@ class SplashRepo {
     sharedPreferences.setBool(AppConstants.INTRO, false);
   }
 
+  void showPrivacySuccess() {
+    sharedPreferences.setBool(AppConstants.PRIVACY_POLICY, true);
+  }
+
   bool showIntro() {
     return sharedPreferences.getBool(AppConstants.INTRO);
+  }
+
+  bool showPrivacyPolicy() {
+    return sharedPreferences.getBool(AppConstants.PRIVACY_POLICY);
   }
 
   Future<void> setStoreCategory(int storeCategoryID) async {

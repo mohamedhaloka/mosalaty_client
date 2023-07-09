@@ -1,11 +1,14 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sixam_mart/controller/auth_controller.dart';
 import 'package:sixam_mart/controller/cart_controller.dart';
 import 'package:sixam_mart/controller/coupon_controller.dart';
 import 'package:sixam_mart/controller/localization_controller.dart';
 import 'package:sixam_mart/controller/location_controller.dart';
 import 'package:sixam_mart/controller/order_controller.dart';
-import 'package:sixam_mart/controller/store_controller.dart';
 import 'package:sixam_mart/controller/splash_controller.dart';
+import 'package:sixam_mart/controller/store_controller.dart';
 import 'package:sixam_mart/controller/user_controller.dart';
 import 'package:sixam_mart/data/model/body/place_order_body.dart';
 import 'package:sixam_mart/data/model/response/address_model.dart';
@@ -33,11 +36,10 @@ import 'package:sixam_mart/view/screens/address/widget/address_widget.dart';
 import 'package:sixam_mart/view/screens/cart/widget/delivery_option_button.dart';
 import 'package:sixam_mart/view/screens/checkout/widget/payment_button.dart';
 import 'package:sixam_mart/view/screens/checkout/widget/slot_widget.dart';
-import 'package:get/get.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sixam_mart/view/screens/home/home_screen.dart';
 import 'package:universal_html/html.dart' as html;
-import 'package:flutter/material.dart';
+
+import '../../../util/dialogs.dart';
 
 class CheckoutScreen extends StatefulWidget {
   final List<CartModel> cartList;
@@ -897,8 +899,13 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                                     image: '',
                                                     rawFile: orderController
                                                         .rawAttachment,
-                                                    onTap: () => orderController
-                                                        .pickImage(),
+                                                    onTap: () =>
+                                                        ensureUserToUseYourPhotos(
+                                                            pickImage:
+                                                                orderController
+                                                                    .pickImage),
+                                                    //orderController
+                                                    //                                                         .pickImage()
                                                   ),
                                                 ],
                                               )

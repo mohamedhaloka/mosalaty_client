@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sixam_mart/controller/auth_controller.dart';
 import 'package:sixam_mart/controller/cart_controller.dart';
 import 'package:sixam_mart/controller/localization_controller.dart';
@@ -9,8 +11,6 @@ import 'package:sixam_mart/util/app_constants.dart';
 import 'package:sixam_mart/util/dimensions.dart';
 import 'package:sixam_mart/util/images.dart';
 import 'package:sixam_mart/util/styles.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:sixam_mart/view/base/custom_snackbar.dart';
 import 'package:sixam_mart/view/base/text_hover.dart';
 import 'package:sixam_mart/view/screens/search/widget/search_field.dart';
@@ -111,8 +111,8 @@ class _WebMenuBarState extends State<WebMenuBar> {
                         SizedBox(width: 20),
                         MenuButton(
                             title: 'privacy_policy'.tr,
-                            onTap: () => Get.toNamed(
-                                RouteHelper.getHtmlRoute('privacy-policy'))),
+                            onTap: () =>
+                                Get.toNamed(RouteHelper.getHtmlRoute('cy'))),
                       ])
                     : SizedBox(
                         width: 250,

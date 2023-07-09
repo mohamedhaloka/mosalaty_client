@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sixam_mart/controller/auth_controller.dart';
 import 'package:sixam_mart/controller/splash_controller.dart';
 import 'package:sixam_mart/controller/user_controller.dart';
@@ -15,8 +17,8 @@ import 'package:sixam_mart/view/base/my_text_field.dart';
 import 'package:sixam_mart/view/base/not_logged_in_screen.dart';
 import 'package:sixam_mart/view/base/web_menu_bar.dart';
 import 'package:sixam_mart/view/screens/profile/widget/profile_bg_widget.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
+import '../../../util/dialogs.dart';
 
 class UpdateProfileScreen extends StatefulWidget {
   @override
@@ -67,7 +69,8 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                     circularImage: ImagePickerWidget(
                       image:
                           '${Get.find<SplashController>().configModel.baseUrls.customerImageUrl}/${userController.userInfoModel.image}',
-                      onTap: () => userController.pickImage(),
+                      onTap: () => ensureUserToUseYourPhotos(
+                          pickImage: userController.pickImage),
                       rawFile: userController.rawFile,
                     ),
                     mainWidget: Column(children: [

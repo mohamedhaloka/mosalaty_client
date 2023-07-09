@@ -187,7 +187,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         buttonText: 'yes'.tr,
                                         fontColor: Colors.black,
                                         bgColor: Colors.grey[300],
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          Get.find<AuthController>()
+                                              .deleteAccount();
+                                        },
                                       ),
                                     ),
                                     const SizedBox(width: 8),
