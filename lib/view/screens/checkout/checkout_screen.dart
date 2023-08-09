@@ -69,6 +69,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   @override
   void initState() {
     super.initState();
+    print('go here check out');
     _isLoggedIn = Get.find<AuthController>().isLoggedIn();
     if (_isLoggedIn) {
       if (Get.find<UserController>().userInfoModel == null) {

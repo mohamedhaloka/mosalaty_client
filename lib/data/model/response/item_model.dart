@@ -44,6 +44,8 @@ class Item {
   List<Variation> variations;
   List<AddOns> addOns;
   List<ChoiceOptions> choiceOptions;
+  List<ColorModel> colors = [];
+  List<SizeModel> sizes = [];
   double price;
   double tax;
   double discount;
@@ -98,28 +100,40 @@ class Item {
     image = json['image'];
     images = json['images'] != null ? json['images'].cast<String>() : [];
     categoryId = json['category_id'];
+    categoryIds = [];
     if (json['category_ids'] != null) {
-      categoryIds = [];
       json['category_ids'].forEach((v) {
-        categoryIds.add(new CategoryIds.fromJson(v));
+        categoryIds.add(CategoryIds.fromJson(v));
       });
     }
+    variations = [];
     if (json['variations'] != null) {
-      variations = [];
       json['variations'].forEach((v) {
-        variations.add(new Variation.fromJson(v));
+        variations.add(Variation.fromJson(v));
       });
     }
+    addOns = [];
     if (json['add_ons'] != null) {
-      addOns = [];
       json['add_ons'].forEach((v) {
-        addOns.add(new AddOns.fromJson(v));
+        addOns.add(AddOns.fromJson(v));
       });
     }
+    choiceOptions = [];
     if (json['choice_options'] != null) {
-      choiceOptions = [];
       json['choice_options'].forEach((v) {
-        choiceOptions.add(new ChoiceOptions.fromJson(v));
+        choiceOptions.add(ChoiceOptions.fromJson(v));
+      });
+    }
+    colors = [];
+    if (json['colors'] != null) {
+      json['colors'].forEach((v) {
+        colors.add(ColorModel.fromJson(v));
+      });
+    }
+    sizes = [];
+    if (json['sizes'] != null) {
+      json['sizes'].forEach((v) {
+        sizes.add(SizeModel.fromJson(v));
       });
     }
     price = json['price'].toDouble();
@@ -195,6 +209,50 @@ class CategoryIds {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
+    return data;
+  }
+}
+
+class ColorModel {
+  String id;
+  String name;
+  String color;
+
+  ColorModel({this.id, this.name, this.color});
+
+  ColorModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'].toString();
+    name = json['name'].toString();
+    color = json['color'].toString();
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['color'] = this.color;
+    return data;
+  }
+}
+
+class SizeModel {
+  String id;
+  String itemId;
+  String name;
+
+  SizeModel({this.id, this.name, this.itemId});
+
+  SizeModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'].toString();
+    itemId = json['item_id'].toString();
+    name = json['name'].toString();
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['item_id'] = this.itemId;
+    data['name'] = this.name;
     return data;
   }
 }

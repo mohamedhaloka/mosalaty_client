@@ -259,7 +259,39 @@ class _SignInScreenState extends State<SignInScreen> {
                             ],
                           ),
                         ),
-                      )
+                      ),
+                      SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
+                      GestureDetector(
+                        onTap: () {
+                          Get.find<AuthController>().signInWithFacebook();
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(20),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(3),
+                            color: Get.theme.primaryColor,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'assets/image/2991148.png',
+                                height: 20,
+                                color: Colors.white,
+                              ),
+                              SizedBox(width: 10),
+                              Text(
+                                'sign_facebook'.tr,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
+
                       // CustomButton(
                       //   buttonText: 'sign_google'.tr,
                       //   icon: CupertinoIcons.pla,
@@ -267,7 +299,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       //     Get.find<AuthController>().signInWithGoogle();
                       //   },
                       // ),
-                      ,
+
                       SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
 
                       !authController.isLoading

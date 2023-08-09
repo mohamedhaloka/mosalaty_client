@@ -1,14 +1,14 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sixam_mart/controller/cart_controller.dart';
 import 'package:sixam_mart/controller/splash_controller.dart';
 import 'package:sixam_mart/data/api/api_checker.dart';
 import 'package:sixam_mart/data/model/body/review_body.dart';
 import 'package:sixam_mart/data/model/response/cart_model.dart';
-import 'package:sixam_mart/data/model/response/order_details_model.dart';
 import 'package:sixam_mart/data/model/response/item_model.dart';
+import 'package:sixam_mart/data/model/response/order_details_model.dart';
 import 'package:sixam_mart/data/model/response/response_model.dart';
 import 'package:sixam_mart/data/repository/item_repo.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:sixam_mart/helper/date_converter.dart';
 import 'package:sixam_mart/helper/responsive_helper.dart';
 import 'package:sixam_mart/helper/route_helper.dart';
@@ -36,6 +36,8 @@ class ItemController extends GetxController implements GetxService {
   Item _item;
   int _productSelect = 0;
   int _imageSliderIndex = 0;
+  String sizeId = '0';
+  String colorId = '0';
 
   List<Item> get popularItemList => _popularItemList;
   List<Item> get reviewedItemList => _reviewedItemList;
@@ -313,20 +315,30 @@ class ItemController extends GetxController implements GetxService {
   }
 
   Future<void> getProductDetails(Item item) async {
+    sizeId = '0';
+    colorId = '0';
+    print('call this');
     _item = null;
-    if (item.name != null) {
-      _item = item;
-    } else {
-      _item = null;
-      Response response = await itemRepo.getItemDetails(item.id);
-      if (response.statusCode == 200) {
-        _item = Item.fromJson(response.body);
-      } else {
-        ApiChecker.checkApi(response);
+    // if (item.name != null) {
+    //   _item = item;
+    // } else {
+    _item = null;
+    Response response = await itemRepo.getItemDetails(item.id);
+    if (response.statusCode == 200) {
+      _item = Item.fromJson(response.body);
+      if (_item.colors.isNotEmpty) {
+        colorId = _item.colors.first.id;
       }
+      if (_item.sizes.isNotEmpty) {
+        sizeId = _item.sizes.first.id;
+      }
+    } else {
+      ApiChecker.checkApi(response);
     }
+    // }
     initData(_item, null);
     setExistInCart(item, notify: false);
+    update();
   }
 
   void setSelect(int select, bool notify) {

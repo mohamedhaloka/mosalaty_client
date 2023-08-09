@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">6amMart</string>
-    <string name="facebook_app_id">452131619626499</string>
-    <string name="fb_login_protocol_scheme">fb452131619626499</string>
+    <string name="app_name">Mosalaty</string>
+    <string name="facebook_app_id">1080584799589378</string>
+    <string name="facebook_client_token">edd877dd1bf008c11e97ae62f13266fd</string>
+    <string name="fb_login_protocol_scheme">fb1080584799589378</string>
 </resources>

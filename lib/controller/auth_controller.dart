@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sixam_mart/controller/splash_controller.dart';
@@ -177,7 +178,12 @@ class AuthController extends GetxController implements GetxService {
   Future<void> signInWithGoogle() async {
     try {
       // Trigger the authentication flow
-      final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
+      final GoogleSignInAccount googleUser = await GoogleSignIn(
+        scopes: [
+          'email',
+          'https://www.googleapis.com/auth/userinfo.profile',
+        ],
+      ).signIn();
 
       // Obtain the auth details from the request
       final GoogleSignInAuthentication googleAuth =
@@ -202,6 +208,41 @@ class AuthController extends GetxController implements GetxService {
           phone: '01094519221');
       // Get.toNamed(RouteHelper.getForgotPassRoute(true, socialLoginBody));
       await loginWithSocialMedia(socialLoginBody);
+    } catch (e) {
+      showCustomSnackBar(e.toString());
+    }
+  }
+
+  Future<void> signInWithFacebook() async {
+    try {
+      // Trigger the authentication flow
+      final LoginResult loginResult = await FacebookAuth.instance.login();
+
+      // Obtain the auth details from the request
+
+      switch (loginResult.status) {
+        case LoginStatus.success:
+          final AuthCredential facebookCredential =
+              FacebookAuthProvider.credential(loginResult.accessToken.token);
+          final UserCredential userCredential = await FirebaseAuth.instance
+              .signInWithCredential(facebookCredential);
+
+          log('email: ${userCredential.user.email}');
+          final socialLoginBody = SocialLogInBody(
+            token: facebookCredential.accessToken,
+            email: userCredential.user.email,
+            medium: 'facebook',
+            phone: '01094519221',
+          );
+          // Get.toNamed(RouteHelper.getForgotPassRoute(true, socialLoginBody));
+          await loginWithSocialMedia(socialLoginBody);
+          break;
+
+        default:
+          showCustomSnackBar('${loginResult.status}, ${loginResult.message}');
+          break;
+      }
+      // Create a new credential
     } catch (e) {
       showCustomSnackBar(e.toString());
     }

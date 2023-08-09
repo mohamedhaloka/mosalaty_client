@@ -37,7 +37,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
   @override
   void initState() {
     super.initState();
-
+    print('item details here');
     Get.find<ItemController>().getProductDetails(widget.item);
   }
 
@@ -397,6 +397,112 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                                             ]),
                                           ),
                                         ]),
+                                        SizedBox(
+                                            height:
+                                                Dimensions.PADDING_SIZE_LARGE),
+                                        if (itemController
+                                            .item.sizes.isNotEmpty)
+                                          Row(
+                                            children: [
+                                              Text('item_sizes'.tr),
+                                              const SizedBox(width: 6),
+                                              Row(
+                                                children:
+                                                    itemController.item.sizes
+                                                        .map<Widget>(
+                                                            (e) => Padding(
+                                                                  padding: const EdgeInsets
+                                                                          .symmetric(
+                                                                      horizontal:
+                                                                          6),
+                                                                  child:
+                                                                      InkWell(
+                                                                    onTap: () {
+                                                                      itemController
+                                                                              .sizeId =
+                                                                          e.id;
+                                                                      setState(
+                                                                          () {});
+                                                                    },
+                                                                    child: Chip(
+                                                                      backgroundColor: itemController.sizeId == e.id
+                                                                          ? Get
+                                                                              .theme
+                                                                              .primaryColor
+                                                                          : null,
+                                                                      label:
+                                                                          Text(
+                                                                        e.name,
+                                                                        style:
+                                                                            TextStyle(
+                                                                          color: itemController.sizeId == e.id
+                                                                              ? Colors.white
+                                                                              : null,
+                                                                          fontWeight: itemController.sizeId == e.id
+                                                                              ? FontWeight.bold
+                                                                              : null,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ))
+                                                        .toList(),
+                                              ),
+                                            ],
+                                          ),
+                                        SizedBox(
+                                            height:
+                                                Dimensions.PADDING_SIZE_LARGE),
+                                        if (itemController
+                                            .item.sizes.isNotEmpty)
+                                          Row(
+                                            children: [
+                                              Text('item_colors'.tr),
+                                              const SizedBox(width: 6),
+                                              Row(
+                                                children:
+                                                    itemController.item.colors
+                                                        .map<Widget>(
+                                                            (e) => Padding(
+                                                                  padding: const EdgeInsets
+                                                                          .symmetric(
+                                                                      horizontal:
+                                                                          6),
+                                                                  child:
+                                                                      InkWell(
+                                                                    onTap: () {
+                                                                      itemController
+                                                                              .colorId =
+                                                                          e.id;
+                                                                      setState(
+                                                                          () {});
+                                                                    },
+                                                                    child: Chip(
+                                                                      backgroundColor: itemController.colorId == e.id
+                                                                          ? Get
+                                                                              .theme
+                                                                              .primaryColor
+                                                                          : null,
+                                                                      label:
+                                                                          Text(
+                                                                        e.name,
+                                                                        style:
+                                                                            TextStyle(
+                                                                          color: itemController.colorId == e.id
+                                                                              ? Colors.white
+                                                                              : null,
+                                                                          fontWeight: itemController.colorId == e.id
+                                                                              ? FontWeight.bold
+                                                                              : null,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ))
+                                                        .toList(),
+                                              ),
+                                            ],
+                                          ),
                                         SizedBox(
                                             height:
                                                 Dimensions.PADDING_SIZE_LARGE),
