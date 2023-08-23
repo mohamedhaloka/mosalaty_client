@@ -1255,7 +1255,11 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                       _addOnIdList,
                       cart.addOns,
                       _addOnQtyList,
+                      cart.colorId,
+                      cart.sizeId,
                     ));
+                    print(cart.colorId);
+                    print(cart.sizeId);
                   }
                   AddressModel _address = orderController.addressIndex == -1
                       ? Get.find<LocationController>().getUserAddress()

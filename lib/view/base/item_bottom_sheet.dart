@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sixam_mart/controller/auth_controller.dart';
 import 'package:sixam_mart/controller/cart_controller.dart';
 import 'package:sixam_mart/controller/item_controller.dart';
@@ -20,8 +22,6 @@ import 'package:sixam_mart/view/base/discount_tag.dart';
 import 'package:sixam_mart/view/base/quantity_button.dart';
 import 'package:sixam_mart/view/base/rating_bar.dart';
 import 'package:sixam_mart/view/screens/checkout/checkout_screen.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class ItemBottomSheet extends StatefulWidget {
   final Item item;
@@ -141,19 +141,20 @@ class _ItemBottomSheetState extends State<ItemBottomSheet> {
             widget.item.availableTimeStarts, widget.item.availableTimeEnds);
 
         CartModel _cartModel = CartModel(
-          price,
-          priceWithDiscount,
-          _variation != null ? [_variation] : [],
-          (price -
-              PriceConverter.convertWithDiscount(
-                  price, _discount, _discountType)),
-          itemController.quantity,
-          _addOnIdList,
-          _addOnsList,
-          widget.isCampaign,
-          _stock,
-          widget.item,
-        );
+            price,
+            priceWithDiscount,
+            _variation != null ? [_variation] : [],
+            (price -
+                PriceConverter.convertWithDiscount(
+                    price, _discount, _discountType)),
+            itemController.quantity,
+            _addOnIdList,
+            _addOnsList,
+            widget.isCampaign,
+            _stock,
+            widget.item,
+            0,
+            0);
 
         return SingleChildScrollView(
           child: Column(

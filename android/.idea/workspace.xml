@@ -5,24 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="78755944-39ca-4dbc-8da6-4de476715fb8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/../.flutter-plugins" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/../.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../assets/language/ar.json" beforeDir="false" afterPath="$PROJECT_DIR$/../assets/language/ar.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../assets/language/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/../assets/language/en.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/controller/auth_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/controller/auth_controller.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/controller/item_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/controller/item_controller.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/data/model/response/item_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/data/model/response/item_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/view/screens/auth/sign_in_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/view/screens/auth/sign_in_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/view/screens/checkout/checkout_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/view/screens/checkout/checkout_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/view/screens/item/item_details_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/view/screens/item/item_details_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

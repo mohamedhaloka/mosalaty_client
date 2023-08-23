@@ -275,7 +275,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'assets/image/2991148.png',
+                                'assets/image/facebook.png',
                                 height: 20,
                                 color: Colors.white,
                               ),

@@ -124,6 +124,8 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
             itemController.item.availableDateStarts != null,
             _stock,
             itemController.item,
+            int.tryParse(Get.find<ItemController>().colorId) ?? 0,
+            int.tryParse(Get.find<ItemController>().sizeId) ?? 0,
           );
           _priceWithAddons = priceWithQuantity +
               (Get.find<SplashController>()
@@ -632,6 +634,8 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                                         showCustomSnackBar(
                                             'item_added_to_cart'.tr,
                                             isError: false);
+                                        Get.back();
+                                        Get.toNamed(RouteHelper.getCartRoute());
                                       }
                                     }
                                   }

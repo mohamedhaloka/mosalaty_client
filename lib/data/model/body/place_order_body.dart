@@ -1,8 +1,8 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:sixam_mart/data/model/response/address_model.dart';
 import 'package:sixam_mart/data/model/response/item_model.dart';
-import 'package:flutter/material.dart';
 
 class PlaceOrderBody {
   List<Cart> _cart;
@@ -198,17 +198,22 @@ class Cart {
   List<int> _addOnIds;
   List<AddOns> _addOns;
   List<int> _addOnQtys;
+  int _colorId;
+  int _sizeId;
 
   Cart(
-      int itemId,
-      int itemCampaignId,
-      String price,
-      String variant,
-      List<Variation> variation,
-      int quantity,
-      List<int> addOnIds,
-      List<AddOns> addOns,
-      List<int> addOnQtys) {
+    int itemId,
+    int itemCampaignId,
+    String price,
+    String variant,
+    List<Variation> variation,
+    int quantity,
+    List<int> addOnIds,
+    List<AddOns> addOns,
+    List<int> addOnQtys,
+    int colorId,
+    int sizeId,
+  ) {
     this._itemId = itemId;
     this._itemCampaignId = itemCampaignId;
     this._price = price;
@@ -218,6 +223,8 @@ class Cart {
     this._addOnIds = addOnIds;
     this._addOns = addOns;
     this._addOnQtys = addOnQtys;
+    this._colorId = colorId;
+    this._sizeId = sizeId;
   }
 
   int get itemId => _itemId;
@@ -267,6 +274,9 @@ class Cart {
       data['add_ons'] = this._addOns.map((v) => v.toJson()).toList();
     }
     data['add_on_qtys'] = this._addOnQtys;
+    data['color_id'] = this._colorId;
+    data['size_id'] = this._sizeId;
+
     return data;
   }
 }

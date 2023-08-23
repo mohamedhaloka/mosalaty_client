@@ -11,6 +11,8 @@ class CartModel {
   bool _isCampaign;
   int _stock;
   Item _item;
+  int _colorId;
+  int _sizeId;
 
   CartModel(
       double price,
@@ -22,7 +24,9 @@ class CartModel {
       List<AddOns> addOns,
       bool isCampaign,
       int stock,
-      Item item) {
+      Item item,
+      int colorId,
+      int sizeId) {
     this._price = price;
     this._discountedPrice = discountedPrice;
     this._variation = variation;
@@ -33,6 +37,8 @@ class CartModel {
     this._isCampaign = isCampaign;
     this._stock = stock;
     this._item = item;
+    this._colorId = colorId;
+    this._sizeId = sizeId;
   }
 
   double get price => _price;
@@ -48,6 +54,8 @@ class CartModel {
   bool get isCampaign => _isCampaign;
   int get stock => _stock;
   Item get item => _item;
+  int get colorId => _colorId;
+  int get sizeId => _sizeId;
 
   CartModel.fromJson(Map<String, dynamic> json) {
     _price = json['price'].toDouble();
@@ -61,6 +69,9 @@ class CartModel {
     _discountAmount = json['discount_amount'].toDouble();
     _quantity = json['quantity'];
     _stock = json['stock'];
+    print(json['colorId']);
+    _colorId = int.tryParse(json['color_id']) ?? 0;
+    _sizeId = int.tryParse(json['size_id']) ?? 0;
     if (json['add_on_ids'] != null) {
       _addOnIds = [];
       json['add_on_ids'].forEach((v) {
@@ -96,6 +107,8 @@ class CartModel {
     }
     data['is_campaign'] = this._isCampaign;
     data['stock'] = this._stock;
+    data['color_id'] = this._colorId;
+    data['size_id'] = this._sizeId;
     data['item'] = this._item.toJson();
     return data;
   }

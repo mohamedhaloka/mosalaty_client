@@ -1,9 +1,9 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sixam_mart/data/model/response/address_model.dart';
 import 'package:sixam_mart/helper/responsive_helper.dart';
 import 'package:sixam_mart/util/dimensions.dart';
 import 'package:sixam_mart/util/styles.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class AddressWidget extends StatelessWidget {
   final AddressModel address;
@@ -66,7 +66,6 @@ class AddressWidget extends StatelessWidget {
                       style: robotoMedium.copyWith(
                           fontSize: Dimensions.fontSizeSmall),
                     ),
-                    SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                     Text(
                       address.address,
                       style: robotoRegular.copyWith(
