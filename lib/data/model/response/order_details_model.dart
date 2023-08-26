@@ -15,6 +15,8 @@ class OrderDetailsModel {
   String variant;
   String createdAt;
   String updatedAt;
+  String sizeName;
+  String colorName;
   int itemCampaignId;
   double totalAddOnPrice;
 
@@ -31,6 +33,8 @@ class OrderDetailsModel {
       this.quantity,
       this.taxAmount,
       this.variant,
+      this.sizeName,
+      this.colorName,
       this.createdAt,
       this.updatedAt,
       this.itemCampaignId,
@@ -56,6 +60,9 @@ class OrderDetailsModel {
         addOns.add(new AddOn.fromJson(v));
       });
     }
+    colorName = json['color_name'];
+    sizeName = json['size_name'];
+
     discountOnItem = json['discount_on_item'].toDouble();
     discountType = json['discount_type'];
     quantity = json['quantity'];
@@ -82,6 +89,8 @@ class OrderDetailsModel {
     if (this.addOns != null) {
       data['add_ons'] = this.addOns.map((v) => v.toJson()).toList();
     }
+    data['color_name'] = this.colorName;
+    data['size_name'] = this.sizeName;
     data['discount_on_item'] = this.discountOnItem;
     data['discount_type'] = this.discountType;
     data['quantity'] = this.quantity;

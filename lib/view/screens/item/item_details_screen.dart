@@ -37,7 +37,6 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
   @override
   void initState() {
     super.initState();
-    print('item details here');
     Get.find<ItemController>().getProductDetails(widget.item);
   }
 

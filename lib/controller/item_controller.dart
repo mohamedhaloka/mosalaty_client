@@ -323,7 +323,7 @@ class ItemController extends GetxController implements GetxService {
     //   _item = item;
     // } else {
     _item = null;
-    Response response = await itemRepo.getItemDetails(211);
+    Response response = await itemRepo.getItemDetails(item.id);
     if (response.statusCode == 200) {
       _item = Item.fromJson(response.body);
       if (_item.colors.isNotEmpty) {

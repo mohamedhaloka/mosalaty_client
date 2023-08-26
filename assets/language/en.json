@@ -21,6 +21,8 @@
   "order_being_processed": "The order is being processed now and a notification of the shipping cost will be sent",
   "confirm_password": "Confirm password",
   "remember_me": "Remember me",
+  "color": "Color",
+  "size": "Size",
   "forgot_password": "Forgot Password",
   "item_sizes": "Item Sizes",
   "item_colors": "Item Colors",

@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sixam_mart/controller/splash_controller.dart';
 import 'package:sixam_mart/data/model/response/order_details_model.dart';
 import 'package:sixam_mart/data/model/response/order_model.dart';
@@ -5,8 +7,6 @@ import 'package:sixam_mart/helper/price_converter.dart';
 import 'package:sixam_mart/util/dimensions.dart';
 import 'package:sixam_mart/util/styles.dart';
 import 'package:sixam_mart/view/base/custom_image.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class OrderItemWidget extends StatelessWidget {
   final OrderModel order;
@@ -15,6 +15,7 @@ class OrderItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(orderDetails.colorName);
     String _addOnText = '';
     orderDetails.addOns.forEach((addOn) {
       _addOnText = _addOnText +
@@ -160,6 +161,44 @@ class OrderItemWidget extends StatelessWidget {
               ]),
             )
           : SizedBox(),
+      Row(
+        children: [
+          if (orderDetails.colorName != null)
+            Expanded(
+              child: Row(
+                children: [
+                  Text('${'color'.tr}: ',
+                      style: robotoMedium.copyWith(
+                        fontSize: Dimensions.fontSizeDefault,
+                        fontWeight: FontWeight.bold,
+                      )),
+                  Flexible(
+                      child: Text(orderDetails.colorName,
+                          style: robotoRegular.copyWith(
+                            fontSize: Dimensions.fontSizeSmall,
+                          ))),
+                ],
+              ),
+            ),
+          if (orderDetails.sizeName != null)
+            Expanded(
+              child: Row(
+                children: [
+                  Text('${'size'.tr}: ',
+                      style: robotoMedium.copyWith(
+                        fontSize: Dimensions.fontSizeDefault,
+                        fontWeight: FontWeight.bold,
+                      )),
+                  Flexible(
+                      child: Text(orderDetails.sizeName,
+                          style: robotoRegular.copyWith(
+                            fontSize: Dimensions.fontSizeSmall,
+                          ))),
+                ],
+              ),
+            ),
+        ],
+      ),
       Divider(height: Dimensions.PADDING_SIZE_LARGE),
       SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
     ]);

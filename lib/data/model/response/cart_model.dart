@@ -70,8 +70,8 @@ class CartModel {
     _quantity = json['quantity'];
     _stock = json['stock'];
     print(json['colorId']);
-    _colorId = int.tryParse(json['color_id']) ?? 0;
-    _sizeId = int.tryParse(json['size_id']) ?? 0;
+    _colorId = int.tryParse(json['color_id'].toString()) ?? 0;
+    _sizeId = int.tryParse(json['size_id'].toString()) ?? 0;
     if (json['add_on_ids'] != null) {
       _addOnIds = [];
       json['add_on_ids'].forEach((v) {
