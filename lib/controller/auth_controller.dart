@@ -2,9 +2,11 @@ import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:sixam_mart/controller/splash_controller.dart';
 import 'package:sixam_mart/controller/wishlist_controller.dart';
 import 'package:sixam_mart/data/api/api_checker.dart';
@@ -14,7 +16,8 @@ import 'package:sixam_mart/data/model/response/response_model.dart';
 import 'package:sixam_mart/data/repository/auth_repo.dart';
 import 'package:sixam_mart/helper/route_helper.dart';
 import 'package:sixam_mart/view/base/custom_snackbar.dart';
-import 'package:the_apple_sign_in/the_apple_sign_in.dart';
+
+// import 'package:the_apple_sign_in/the_apple_sign_in.dart';
 
 import 'cart_controller.dart';
 
@@ -126,53 +129,60 @@ class AuthController extends GetxController implements GetxService {
     update();
   }
 
-  Future<void> signInWithApple({List<Scope> scopes = const []}) async {
+  Future<void> signInWithApple() async {
     // 1. perform the sign-in request
-    final result = await TheAppleSignIn.performRequests(
-        [AppleIdRequest(requestedScopes: scopes)]);
-    // 2. check the result
-    switch (result.status) {
-      case AuthorizationStatus.authorized:
-        final appleIdCredential = result.credential;
-        final oAuthProvider = OAuthProvider('apple.com');
-        final credential = oAuthProvider.credential(
-          idToken: String.fromCharCodes(appleIdCredential.identityToken),
-          accessToken:
-              String.fromCharCodes(appleIdCredential.authorizationCode),
-        );
+    // final result = await TheAppleSignIn.performRequests(
+    //     [AppleIdRequest(requestedScopes: scopes)]);
 
-        final fullName = appleIdCredential.fullName;
-        if (fullName != null &&
-            fullName.givenName != null &&
-            fullName.familyName != null) {
-          print('credential.rawNonce');
-          print(appleIdCredential.fullName.familyName);
-          print(appleIdCredential.fullName.givenName);
-          // SignUpBody signUpBody = SignUpBody(
-          //   fName: appleIdCredential.fullName.givenName,
-          //   lName: appleIdCredential.fullName.familyName,
-          //   email: appleIdCredential.email,
-          //   phone: '',
-          // );
-          // registration(signUpBody);
-          final socialLoginBody = SocialLogInBody(
-            token: String.fromCharCodes(appleIdCredential.authorizationCode),
-            name: appleIdCredential.fullName.givenName,
-            email: appleIdCredential.email,
-            medium: 'apple',
-          );
-          await registerWithSocialMedia(socialLoginBody);
-        }
-        break;
-      case AuthorizationStatus.error:
-        log('ERROR_AUTHORIZATION_DENIED');
-        break;
-      case AuthorizationStatus.cancelled:
-        log('ERROR_ABORTED_BY_USER');
-        break;
-      default:
-        throw UnimplementedError();
+    try {
+      final appleCredential = await SignInWithApple.getAppleIDCredential(
+        scopes: [
+          AppleIDAuthorizationScopes.email,
+          AppleIDAuthorizationScopes.fullName,
+        ],
+      );
+
+      final oAuthProvider = OAuthProvider('apple.com');
+      final credential = oAuthProvider.credential(
+        idToken: appleCredential.identityToken,
+        accessToken: appleCredential.authorizationCode,
+      );
+
+      final UserCredential userCredential =
+          await _firebaseAuth.signInWithCredential(credential);
+
+      print(userCredential.user.displayName);
+      print(userCredential.user.email);
+
+      final socialLoginBody = SocialLogInBody(
+        token: appleCredential.authorizationCode,
+        name: userCredential.user.displayName ?? userCredential.user.email,
+        email: userCredential.user.email,
+        medium: 'apple',
+      );
+      await loginWithSocialMedia(socialLoginBody);
+    } catch (e) {
+      print('ERROR_APPLE $e');
     }
+
+    // 2. check the result
+    // switch (result.status) {
+    //   case AuthorizationStatus.authorized:
+    //     final appleIdCredential = result.credential;
+    //
+    //
+    //
+    //
+    //     break;
+    //   case AuthorizationStatus.error:
+    //     print('ERROR_AUTHORIZATION_DENIED');
+    //     break;
+    //   case AuthorizationStatus.cancelled:
+    //     print('ERROR_ABORTED_BY_USER');
+    //     break;
+    //   default:
+    //     throw UnimplementedError();
+    // }
   }
 
   Future<void> signInWithGoogle() async {
@@ -202,14 +212,16 @@ class AuthController extends GetxController implements GetxService {
       print(userCredential.user.displayName);
 
       final socialLoginBody = SocialLogInBody(
-          token: googleAuth?.accessToken,
-          email: userCredential.user.email,
-          medium: 'google',
-          phone: '01094519221');
+        token: googleAuth?.accessToken,
+        email: userCredential.user.email,
+        medium: 'google',
+        phone: userCredential.user.uid,
+      );
       // Get.toNamed(RouteHelper.getForgotPassRoute(true, socialLoginBody));
       await loginWithSocialMedia(socialLoginBody);
+    } on PlatformException {
     } catch (e) {
-      showCustomSnackBar(e.toString());
+      // showCustomSnackBar(e.toString());
     }
   }
 

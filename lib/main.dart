@@ -20,7 +20,7 @@ import 'package:sixam_mart/theme/dark_theme.dart';
 import 'package:sixam_mart/theme/light_theme.dart';
 import 'package:sixam_mart/util/app_constants.dart';
 import 'package:sixam_mart/util/messages.dart';
-import 'package:the_apple_sign_in/the_apple_sign_in.dart';
+// import 'package:the_apple_sign_in/the_apple_sign_in.dart';
 import 'package:url_strategy/url_strategy.dart';
 
 import 'helper/get_di.dart' as di;
@@ -71,6 +71,7 @@ class MyApp extends StatelessWidget {
   void _route() {
     Get.find<SplashController>().getConfigData().then((bool isSuccess) async {
       if (isSuccess) {
+        //صلاح سالم
         if (Get.find<AuthController>().isLoggedIn()) {
           Get.find<AuthController>().updateToken();
           await Get.find<WishListController>().getWishList();
@@ -134,12 +135,12 @@ class MyHttpOverrides extends HttpOverrides {
           (X509Certificate cert, String host, int port) => true;
   }
 }
-
-class AppleSignInAvailable {
-  AppleSignInAvailable(this.isAvailable);
-  final bool isAvailable;
-
-  static Future<AppleSignInAvailable> check() async {
-    return AppleSignInAvailable(await TheAppleSignIn.isAvailable());
-  }
-}
+//
+// class AppleSignInAvailable {
+//   AppleSignInAvailable(this.isAvailable);
+//   final bool isAvailable;
+//
+//   static Future<AppleSignInAvailable> check() async {
+//     return AppleSignInAvailable(await TheAppleSignIn.isAvailable());
+//   }
+// }

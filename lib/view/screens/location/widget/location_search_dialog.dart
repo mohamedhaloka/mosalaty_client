@@ -56,14 +56,15 @@ class LocationSearchDialog extends StatelessWidget {
                     .searchLocation(context, pattern);
               },
               itemBuilder: (context, PredictionModel suggestion) {
+                print('suggestion.description ${suggestion.description}');
                 return Padding(
                   padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
                   child: Row(children: [
                     Icon(Icons.location_on),
+                    const SizedBox(width: 2),
                     Expanded(
                       child: Text(suggestion.description,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
                           style: Theme.of(context).textTheme.headline2.copyWith(
                                 color:
                                     Theme.of(context).textTheme.bodyText1.color,

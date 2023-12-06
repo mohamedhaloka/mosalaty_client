@@ -22,7 +22,6 @@ import 'package:sixam_mart/view/base/menu_drawer.dart';
 import 'package:sixam_mart/view/base/web_menu_bar.dart';
 import 'package:sixam_mart/view/screens/auth/widget/condition_check_box.dart';
 import 'package:sixam_mart/view/screens/auth/widget/guest_button.dart';
-import 'package:the_apple_sign_in/scope.dart';
 
 class SignInScreen extends StatefulWidget {
   final bool exitFromApp;
@@ -230,8 +229,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           buttonText: 'sign_apple'.tr,
                           icon: Icons.apple,
                           onPressed: () {
-                            Get.find<AuthController>().signInWithApple(
-                                scopes: [Scope.email, Scope.fullName]);
+                            Get.find<AuthController>().signInWithApple();
                           },
                         ),
                         SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
@@ -277,7 +275,6 @@ class _SignInScreenState extends State<SignInScreen> {
                               Image.asset(
                                 'assets/image/facebook.png',
                                 height: 20,
-                                color: Colors.white,
                               ),
                               SizedBox(width: 10),
                               Text(

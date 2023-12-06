@@ -188,8 +188,8 @@ class _StoreScreenState extends State<StoreScreen> {
                                       Text(
                                         _store.discount.discountType ==
                                                 'percent'
-                                            ? '${_store.discount.discount}% OFF'
-                                            : '${PriceConverter.convertPrice(_store.discount.discount)} OFF',
+                                            ? '${_store.discount.discount}% ${'off'.tr}'
+                                            : '${PriceConverter.convertPrice(_store.discount.discount)} ${'off'.tr}',
                                         style: robotoMedium.copyWith(
                                             fontSize: Dimensions.fontSizeLarge,
                                             color: Theme.of(context).cardColor),

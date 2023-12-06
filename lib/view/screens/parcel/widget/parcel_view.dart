@@ -185,13 +185,15 @@ class _ParcelViewState extends State<ParcelView> {
                       Center(
                           child: Text(
                               parcelController.isSender
-                                  ? 'pickup_information'.tr
+                                  ? 'shipment_information'.tr
                                   : 'destination_information'.tr,
                               style: robotoMedium)),
                       SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
                       TextFieldShadow(
                         child: MyTextField(
-                          hintText: "${'street_number'.tr} (${'optional'.tr})",
+                          hintText: parcelController.isSender
+                              ? "${'shipment_information_and_address'.tr}"
+                              : "${'street_number'.tr} (${'optional'.tr})",
                           inputType: TextInputType.streetAddress,
                           focusNode: _streetNode,
                           nextFocus: _houseNode,
