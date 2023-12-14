@@ -1,4 +1,6 @@
 import 'package:country_code_picker/country_code.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sixam_mart/controller/auth_controller.dart';
 import 'package:sixam_mart/controller/splash_controller.dart';
 import 'package:sixam_mart/data/model/body/social_log_in_body.dart';
@@ -13,9 +15,6 @@ import 'package:sixam_mart/view/base/custom_text_field.dart';
 import 'package:sixam_mart/view/base/footer_view.dart';
 import 'package:sixam_mart/view/base/menu_drawer.dart';
 import 'package:sixam_mart/view/screens/auth/widget/code_picker_widget.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:phone_number/phone_number.dart';
 
 class ForgetPassScreen extends StatefulWidget {
   final bool fromSocialLogin;
@@ -118,17 +117,23 @@ class _ForgetPassScreenState extends State<ForgetPassScreen> {
   }
 
   void _forgetPass(String countryCode) async {
+    if (widget.fromSocialLogin) {
+      print(widget.socialLogInBody.toJson());
+    }
     String _phone = _numberController.text.trim();
 
     String _numberWithCountryCode = countryCode + _phone;
     bool _isValid = GetPlatform.isWeb ? true : false;
     if (!GetPlatform.isWeb) {
       try {
-        PhoneNumber phoneNumber =
-            await PhoneNumberUtil().parse(_numberWithCountryCode);
-        _numberWithCountryCode =
-            '+' + phoneNumber.countryCode + phoneNumber.nationalNumber;
-        _isValid = true;
+        if (_phone.length == 11 || _phone.length == 10) {
+          if (_phone.startsWith('0')) {
+            _phone = _phone.substring(1);
+          }
+
+          _numberWithCountryCode = countryCode + _phone;
+          _isValid = true;
+        }
       } catch (e) {}
     }
 

@@ -30,8 +30,7 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.googleusercontent.apps.1011436910772-al6qr8f37fkfi2eu420nit4pjvjtsjua</string>
-				    <string>fb1080584799589378</string>
-
+				<string>fb1080584799589378</string>
 			</array>
 		</dict>
 	</array>
@@ -58,17 +57,17 @@
 	<string>Main</string>
 	<key>UIStatusBarHidden</key>
 	<false/>
-		<key>FacebookAppID</key>
-    	<string>1080584799589378</string>
-    	<key>FacebookClientToken</key>
-    	<string>edd877dd1bf008c11e97ae62f13266fd</string>
-    	<key>FacebookDisplayName</key>
-    	<string>elmwslaty</string>
-    	<key>LSApplicationQueriesSchemes</key>
-        	<array>
-        		<string>fbapi</string>
-        		<string>fb-messenger-share-api</string>
-        	</array>
+	<key>FacebookAppID</key>
+	<string>1080584799589378</string>
+	<key>FacebookClientToken</key>
+	<string>edd877dd1bf008c11e97ae62f13266fd</string>
+	<key>FacebookDisplayName</key>
+	<string>Mwsalty</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

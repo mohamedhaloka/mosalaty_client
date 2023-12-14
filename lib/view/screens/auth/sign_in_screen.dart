@@ -6,7 +6,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:phone_number/phone_number.dart';
 import 'package:sixam_mart/controller/auth_controller.dart';
 import 'package:sixam_mart/controller/splash_controller.dart';
 import 'package:sixam_mart/helper/responsive_helper.dart';
@@ -340,11 +339,14 @@ class _SignInScreenState extends State<SignInScreen> {
     bool _isValid = GetPlatform.isWeb ? true : false;
     if (!GetPlatform.isWeb) {
       try {
-        PhoneNumber phoneNumber =
-            await PhoneNumberUtil().parse(_numberWithCountryCode);
-        _numberWithCountryCode =
-            '+' + phoneNumber.countryCode + phoneNumber.nationalNumber;
-        _isValid = true;
+        if (_phone.length == 11 || _phone.length == 10) {
+          if (_phone.startsWith('0')) {
+            _phone = _phone.substring(1);
+          }
+
+          _numberWithCountryCode = countryDialCode + _phone;
+          _isValid = true;
+        }
       } catch (e) {}
     }
     if (_phone.isEmpty) {

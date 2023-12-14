@@ -6,13 +6,14 @@ class SocialLogInBody {
   String name;
   String phone;
 
-  SocialLogInBody(
-      {this.email,
-      this.token,
-      this.name,
-      this.uniqueId,
-      this.medium,
-      this.phone});
+  SocialLogInBody({
+    this.email,
+    this.token,
+    this.name,
+    this.uniqueId,
+    this.medium,
+    this.phone,
+  });
 
   SocialLogInBody.fromJson(Map<String, dynamic> json) {
     email = json['email'];

@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:phone_number/phone_number.dart';
 import 'package:sixam_mart/controller/auth_controller.dart';
 import 'package:sixam_mart/controller/splash_controller.dart';
 import 'package:sixam_mart/data/model/body/signup_body.dart';
@@ -224,11 +223,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
     bool _isValid = GetPlatform.isWeb ? true : false;
     if (!GetPlatform.isWeb) {
       try {
-        PhoneNumber phoneNumber =
-            await PhoneNumberUtil().parse(_numberWithCountryCode);
-        _numberWithCountryCode =
-            '+' + phoneNumber.countryCode + phoneNumber.nationalNumber;
-        _isValid = true;
+        if (_number.length == 11 || _number.length == 10) {
+          if (_number.startsWith('0')) {
+            _number = _number.substring(1);
+          }
+
+          _numberWithCountryCode = countryCode + _number;
+          _isValid = true;
+        }
       } catch (e) {}
     }
 

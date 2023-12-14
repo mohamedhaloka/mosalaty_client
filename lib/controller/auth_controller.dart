@@ -1,4 +1,4 @@
-import 'dart:developer';
+import 'dart:math' as math;
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -56,7 +56,8 @@ class AuthController extends GetxController implements GetxService {
     return responseModel;
   }
 
-  Future<ResponseModel> login(String phone, String password) async {
+  Future<ResponseModel> logis_phone_verifiedin(
+      String phone, String password) async {
     _isLoading = true;
     update();
     Response response = await authRepo.login(phone: phone, password: password);
@@ -225,6 +226,16 @@ class AuthController extends GetxController implements GetxService {
     }
   }
 
+  String convertNameToEmail(String name) {
+    // Convert name to lowercase and remove spaces
+    String formattedName = name.toLowerCase().replaceAll(' ', '');
+
+    // Generate email by appending a domain
+    String email = formattedName + '@gmail.com';
+
+    return email;
+  }
+
   Future<void> signInWithFacebook() async {
     try {
       // Trigger the authentication flow
@@ -234,17 +245,20 @@ class AuthController extends GetxController implements GetxService {
 
       switch (loginResult.status) {
         case LoginStatus.success:
+          print('permissions ${loginResult.accessToken.grantedPermissions}');
           final AuthCredential facebookCredential =
               FacebookAuthProvider.credential(loginResult.accessToken.token);
           final UserCredential userCredential = await FirebaseAuth.instance
               .signInWithCredential(facebookCredential);
 
-          log('email: ${userCredential.user.email}');
+          print('user email: ${userCredential.user.email}');
+          print('fb token ${loginResult.accessToken.token}');
           final socialLoginBody = SocialLogInBody(
-            token: facebookCredential.accessToken,
-            email: userCredential.user.email,
+            token: loginResult.accessToken.token,
+            email: userCredential.user.email ??
+                convertNameToEmail(userCredential.user.displayName),
             medium: 'facebook',
-            phone: '01094519221',
+            phone: userCredential.user.uid,
           );
           // Get.toNamed(RouteHelper.getForgotPassRoute(true, socialLoginBody));
           await loginWithSocialMedia(socialLoginBody);
@@ -258,6 +272,14 @@ class AuthController extends GetxController implements GetxService {
     } catch (e) {
       showCustomSnackBar(e.toString());
     }
+  }
+
+  String generateEgyptianPhoneNumber() {
+    var areaCodes = ['010', '011', '012', '015'];
+    var random = math.Random();
+    var areaCode = areaCodes[random.nextInt(areaCodes.length)];
+    var number = random.nextInt(90000000) + 10000000;
+    return '+20$areaCode$number';
   }
 
   Future<ResponseModel> forgetPassword(String email) async {
